@@ -1,2 +1,5 @@
 # Automation Toolkit
-Basic script automation method for Windows Powershell
+Simplified script deployment for Windows Powershell
+- Pull your hostname-specific scripts to server with ease
+- Organize your script catalogue to server groups
+- Server maintenance made easy
