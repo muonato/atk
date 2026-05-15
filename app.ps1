@@ -1,7 +1,11 @@
-<#
-Resulting Output Formats
-    $groups: An ordered dictionary of groups. Access specific hosts via $groups['webservers']
-    $servers: An ordered dictionary tracking mapping details. Querying $servers['example.com'] returns a listing of its parent groups (e.g., webservers)
+<# Automation Toolkit
+
+Invokes scripts named in the task inventory file for hostnames
+contained in the host inventory file.
+
+Parameters:
+	-Hosts	: path to host inventory file (default: 'config\hosts.ini')
+	-Tasks	: path to task inventory file (default: 'config\tasks.ini')
 #>
 
 param (
