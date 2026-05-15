@@ -1,5 +1,5 @@
 # Automation Toolkit
-Simplified script deployment for Windows Powershell
+Powershell script deployment to multiple hosts
 - Pull your host-specific scripts to run with ease
 - Organize your script repository to server groups
 - Server maintenance task cataloging made easy
