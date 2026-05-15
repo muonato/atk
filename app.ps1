@@ -82,7 +82,7 @@ $dtaCommand = @{}
 Get-Inventory -iniFile $Tasks -grpVar ([ref]$grpCommand) -dtaVar ([ref]$dtaCommand)
 
 # Loop thru groups server belongs to
-# and start scripts defined in group 
+# and start scripts defined for each 
 $dtaServers[$(hostname)] | ForEach-Object {
     $grpCommand[$_] | ForEach-Object {
         $script = $_
