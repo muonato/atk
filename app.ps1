@@ -1,4 +1,4 @@
-<# Automation Toolkit
+<# Powershell Automation Toolkit
 
 Invokes scripts named in the task inventory file for 
 all hostnames contained in the host inventory file.
@@ -68,14 +68,18 @@ function Get-Inventory {
     }
 }
 
-# Server inventory
-$grpServers = @{}
-$dtaServers = @{}
+# Server inventory init
+$grpServers = @{"all" = [System.Collections.Generic.List[string]]::new()}
+$dtaServers = @{$(hostname) = [System.Collections.Generic.List[string]]::new()}
+
+# Add host to group 'all' by default
+$grpServers["all"].Add($(hostname))
+$dtaServers[$(hostname)].Add("all")
 
 Get-Inventory -iniFile $Hosts -grpVar ([ref]$grpServers) -dtaVar ([ref]$dtaServers)
 
-# Script inventory
-$grpCommand = @{}
+# Script inventory init
+$grpCommand = @{"all" = [System.Collections.Generic.List[string]]::new()}
 $dtaCommand = @{}
 
 Get-Inventory -iniFile $Tasks -grpVar ([ref]$grpCommand) -dtaVar ([ref]$dtaCommand)
