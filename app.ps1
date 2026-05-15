@@ -18,11 +18,10 @@ $DEFAULT_SCRIPT_DIR = "$PSScriptRoot\script"
 function Get-Inventory {
     # Reads basic Ansible inventory file into referenced
     # variables for storing assigned groups with content
-    #
-    # $invgroups = @{}; $invdata = @{}
-    # Get-Inventory -iniFile "inventory.ini" \
-    #               -grpVar ([ref]$invgroup) \
-    #               -dtaVar ([ref]$invdata)
+    # Example:
+    #    $invgroups = @{}; $invdata = @{}
+    #    Get-Inventory -grpVar ([ref]$invgroup) \
+    #                  -dtaVar ([ref]$invdata)
     #
     param (
         [string]$iniFile,
