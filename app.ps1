@@ -1,7 +1,7 @@
 <# Automation Toolkit
 
-Invokes scripts named in the task inventory file for hostnames
-contained in the host inventory file.
+Invokes scripts named in the task inventory file for 
+all hostnames contained in the host inventory file.
 
 Parameters:
 	-Hosts	: path to host inventory file (default: 'config\hosts.ini')
