@@ -2,7 +2,7 @@
 19-MAY-2026 / github.com/muonato
 
 Invoke scripts listed in task inventory groups
-on hosts listed in corresponding host groups
+on all hostnames listed in related host groups
 
 Parameters:
 	-Hosts	: path to host inventory file (default: 'config\hosts.ini')
