@@ -1,8 +1,8 @@
 # Powershell Automation Toolkit
 Orchestrate script deployment to hosts in inventory
-- Pull your host-specific scripts and run with ease
+- Pull and invoke your host-specific scripts
 - Organize your script repository to server groups
-- Simplify host management to various task groups
+- Simplify host operations to various task groups
 
 # Quickstart
 1. Add your script to sub-folder '*script\\*'
