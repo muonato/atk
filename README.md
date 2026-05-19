@@ -1,5 +1,4 @@
 # Powershell Automation Toolkit
-Orchestrate script deployment to hosts in inventory
 - Pull and invoke your host-specific scripts
 - Organize your script repository to server groups
 - Simplify host operations to various task groups
