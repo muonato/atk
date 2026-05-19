@@ -1,7 +1,8 @@
 <# Powershell Automation Toolkit
+19-MAY-2026 / github.com/muonato
 
-Invokes scripts named in the task inventory file for 
-all hostnames contained in the host inventory file.
+Invoke scripts listed in task inventory groups
+on hosts listed in corresponding host groups
 
 Parameters:
 	-Hosts	: path to host inventory file (default: 'config\hosts.ini')
@@ -9,19 +10,20 @@ Parameters:
 #>
 
 param (
-	[string]$Hosts = "$PSScriptRoot\config\hosts.ini",
+    [string]$Hosts = "$PSScriptRoot\config\hosts.ini",
     [string]$Tasks = "$PSScriptRoot\config\tasks.ini"
 )
 
 $DEFAULT_SCRIPT_DIR = "$PSScriptRoot\script"
 
 function Get-Inventory {
-    # Reads basic Ansible inventory file into referenced
-    # variables for storing assigned groups with content
-    # Example:
-    #    $invgroups = @{}; $invdata = @{}
-    #    Get-Inventory -grpVar ([ref]$invgroup) \
-    #                  -dtaVar ([ref]$invdata)
+    # Reads basic inventory file to variables
+    # for groups and their associated content
+    #
+    # $invgroups = @{}; $invdata = @{}
+    # Get-Inventory -iniFile "inventory.ini" \
+    #               -grpVar ([ref]$invgroup) \
+    #               -dtaVar ([ref]$invdata)
     #
     param (
         [string]$iniFile,
@@ -85,10 +87,11 @@ $dtaCommand = @{}
 Get-Inventory -iniFile $Tasks -grpVar ([ref]$grpCommand) -dtaVar ([ref]$dtaCommand)
 
 # Loop thru groups server belongs to
-# and start scripts defined for each 
+# and start scripts defined in group
+# as own isolated child session each
 $dtaServers[$(hostname)] | ForEach-Object {
     $grpCommand[$_] | ForEach-Object {
         $script = $_
-        . "$DEFAULT_SCRIPT_DIR\$script"
+        & "$DEFAULT_SCRIPT_DIR\$script"
     }
 }
