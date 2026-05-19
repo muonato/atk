@@ -5,16 +5,15 @@ Invoke scripts listed in task inventory groups
 on all hostnames listed in related host groups
 
 Parameters:
-	-Hosts	: path to host inventory file (default: 'config\hosts.ini')
-	-Tasks	: path to task inventory file (default: 'config\tasks.ini')
+	-Host	: path to host inventory file (default: 'config\hosts.ini')
+	-Task	: path to task inventory file (default: 'config\tasks.ini')
+	-Repo	: path to task scripts folder (default: 'scripts')
 #>
-
 param (
-    [string]$Hosts = "$PSScriptRoot\config\hosts.ini",
-    [string]$Tasks = "$PSScriptRoot\config\tasks.ini"
+    [string]$Host = "$PSScriptRoot\config\hosts.ini",
+    [string]$Task = "$PSScriptRoot\config\tasks.ini"
+	[string]$Repo = "$PSScriptRoot\scripts"
 )
-
-$DEFAULT_SCRIPT_DIR = "$PSScriptRoot\script"
 
 function Get-Inventory {
     # Reads basic inventory file to variables
@@ -30,6 +29,7 @@ function Get-Inventory {
         [ref]$grpVar,
         [ref]$dtaVar
     )
+	
     if (-not (Test-Path $iniFile)) {
         return "File not found ($iniFile)"
     }
@@ -69,7 +69,6 @@ function Get-Inventory {
         }
     }
 }
-
 # Server inventory init
 $grpServers = @{"all" = [System.Collections.Generic.List[string]]::new()}
 $dtaServers = @{$(hostname) = [System.Collections.Generic.List[string]]::new()}
@@ -92,6 +91,6 @@ Get-Inventory -iniFile $Tasks -grpVar ([ref]$grpCommand) -dtaVar ([ref]$dtaComma
 $dtaServers[$(hostname)] | ForEach-Object {
     $grpCommand[$_] | ForEach-Object {
         $script = $_
-        & "$DEFAULT_SCRIPT_DIR\$script"
+        & "$Repo\$script"
     }
 }
