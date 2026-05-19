@@ -1,7 +1,7 @@
 # Powershell Automation Toolkit
 - Pull and invoke your host-specific scripts
-- Organize your script repository to server groups
-- Simplify host operations to various task groups
+- Organize your script repository to host groups
+- Simplify operations to various task groups
 
 # Quickstart
 1. Add your script to sub-folder '*script\\*'
