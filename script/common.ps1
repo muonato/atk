@@ -1,1 +1,1 @@
-Write-Output "To all hosts !"
+Write-Output "One script to rule them all"
